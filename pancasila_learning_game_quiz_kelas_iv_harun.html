@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan Pancasila - Kelas IV Harun (Persiapan ATS)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            yellow: '#FFD166',
+                            green: '#06D6A0',
+                            blue: '#118AB2',
+                            red: '#EF476F',
+                            dark: '#073B4C',
+                            purple: '#8338EC'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Fredoka', 'sans-serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 50%, #fef3c7 100%);
+            min-height: 100vh;
+        }
+        .font-heading { font-family: 'Fredoka', cursive, sans-serif; }
+        .card-bounce { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .card-bounce:hover { transform: translateY(-4px); }
+        .btn-pop { transition: all 0.15s ease; }
+        .btn-pop:active { transform: scale(0.95); }
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .animate-pulse-subtle { animation: pulse-subtle 2s infinite ease-in-out; }
+        @media print {
+            body * { visibility: hidden; }
+            #printable-certificate, #printable-certificate * { visibility: visible; }
+            #printable-certificate { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-30 border-b border-amber-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-amber-400 to-red-500 text-white p-2.5 rounded-2xl shadow-md text-xl">
+                    <i class="fa-solid font-bold fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading text-xl md:text-2xl font-bold text-slate-800 leading-none">Petualangan Pancasila</h1>
+                    <span class="text-xs font-semibold text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full">Kelas IV Harun • Persiapan ATS</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div id="user-display" class="hidden md:flex items-center gap-2 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full text-xs font-bold text-emerald-800">
+                    <i class="fa-solid fa-user-astronaut text-emerald-600"></i>
+                    <span id="nav-user-name">Siswa</span>
+                </div>
+                <button id="sound-toggle-btn" onclick="toggleSound()" class="p-2.5 bg-slate-100 hover:bg-slate-200 rounded-xl text-slate-700 font-bold transition flex items-center gap-2 text-xs">
+                    <i id="sound-icon" class="fa-solid fa-volume-high text-brand-blue"></i>
+                    <span class="hidden sm:inline">Suara: ON</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 flex flex-col justify-center">
+
+        <!-- SCREEN 1: WELCOME & REGISTRATION -->
+        <section id="screen-welcome" class="bg-white rounded-3xl p-6 md:p-10 shadow-xl border-4 border-amber-300 max-w-3xl mx-auto w-full text-center relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-amber-100 rounded-full blur-2xl -z-0"></div>
+            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-emerald-100 rounded-full blur-2xl -z-0"></div>
+
+            <div class="relative z-10 space-y-6">
+                <div class="inline-block bg-gradient-to-r from-red-500 via-amber-400 to-emerald-500 text-white px-4 py-1.5 rounded-full font-bold text-sm tracking-wide uppercase shadow-sm">
+                    ✨ Game Belajar Interaktif ATS ✨
+                </div>
+                
+                <h2 class="font-heading text-3xl md:text-5xl font-bold text-slate-800">
+                    Selamat Datang Pejuang Pancasila! 🇮🇩
+                </h2>
+                <p class="text-slate-600 max-w-xl mx-auto text-sm md:text-base">
+                    Mari persiapkan diri menghadapi <b>Asesmen Tengah Semester (ATS)</b> Kelas IV Harun! Pelajari 15 materi lengkap dan uji kemampuanmu di quis 50 soal interaktif!
+                </p>
+
+                <!-- Input Name Card -->
+                <div class="bg-amber-50 p-6 rounded-2xl border-2 border-amber-200 max-w-md mx-auto text-left space-y-3 shadow-inner">
+                    <label for="student-name-input" class="block text-sm font-bold text-slate-700">
+                        <i class="fa-solid fa-signature text-amber-500 mr-1"></i> Tuliskan Nama Lengkapmu:
+                    </label>
+                    <input type="text" id="student-name-input" placeholder="Contoh: Muhammad Ali..." class="w-full px-4 py-3 rounded-xl border-2 border-slate-300 focus:border-amber-500 focus:outline-none text-base font-semibold">
+                    <p class="text-xs text-slate-500 italic">*Nama akan dicantumkan di Sertifikat Kelulusan jika meraih nilai 100.</p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
+                    <button onclick="handleStartMateri()" class="btn-pop w-full sm:w-auto px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-heading text-xl rounded-2xl shadow-lg shadow-emerald-200 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-book-open"></i> 1. Baca Materi Dulu
+                    </button>
+                    <button onclick="handleTryDirectQuiz()" class="btn-pop w-full sm:w-auto px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-heading text-xl rounded-2xl shadow-lg shadow-amber-200 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-circle-question"></i> 2. Mengerjakan Quis
+                    </button>
+                </div>
+
+                <!-- Developer Footer Note -->
+                <div class="pt-6 border-t border-slate-100 text-xs text-slate-500 font-medium">
+                    <p><i class="fa-solid fa-code text-blue-500 mr-1"></i> Pengembang: <span class="font-bold text-slate-700">Giga Inovation</span> (📱 081329200985)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: MATERI PEMBELAJARAN (15 KISI-KISI) -->
+        <section id="screen-materi" class="hidden space-y-6">
+            <div class="bg-white p-6 rounded-3xl shadow-lg border-2 border-emerald-300 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div>
+                    <span class="text-xs font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full uppercase">Langkah 1 dari 2</span>
+                    <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-800 mt-1">Rangkuman Materi Sesuai Kisi-Kisi</h2>
+                    <p class="text-xs md:text-sm text-slate-600">Pelajari 15 poin materi lengkap di bawah ini sebelum mengerjakan Quis ATS!</p>
+                </div>
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <button onclick="markMaterialReadAndGoQuiz()" id="go-quiz-from-materi-btn" class="btn-pop w-full md:w-auto bg-gradient-to-r from-amber-500 to-orange-500 text-white font-heading px-6 py-3.5 rounded-2xl shadow-md flex items-center justify-center gap-2 hover:brightness-105">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i> Lanjut Ke Quis ATS (50 Soal)!
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kisi-Kisi Material Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="materi-container">
+                <!-- Javascript will inject 15 cards -->
+            </div>
+        </section>
+
+        <!-- SCREEN 3: QUIZ ATS (50 SOAL WITH BACK TO MATERI & INSTANT FEEDBACK) -->
+        <section id="screen-quiz" class="hidden space-y-6">
+            <div class="bg-white p-4 md:p-5 rounded-3xl shadow-lg border-2 border-blue-300 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-500 text-white flex items-center justify-center font-heading text-xl shadow-md">
+                            <span id="quiz-current-num">1</span>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-xl font-bold text-slate-800">Quis ATS Kelas IV Harun</h3>
+                            <p class="text-xs text-slate-500">Soal <span id="quiz-progress-text">1 dari 50</span></p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="returnToMaterialFromQuiz()" class="btn-pop sm:hidden bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5">
+                        <i class="fa-solid fa-book-open"></i> Materi
+                    </button>
+                </div>
+
+                <div class="w-full sm:w-1/2 flex items-center gap-4">
+                    <div class="flex-1 space-y-1">
+                        <div class="flex justify-between text-xs font-bold text-slate-600">
+                            <span>Kemajuan</span>
+                            <span id="quiz-percentage">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 h-3 rounded-full overflow-hidden">
+                            <div id="quiz-progress-bar" class="bg-gradient-to-r from-blue-400 to-emerald-400 h-full w-0 transition-all duration-300"></div>
+                        </div>
+                    </div>
+
+                    <button onclick="returnToMaterialFromQuiz()" class="hidden sm:flex btn-pop bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-xs font-bold px-4 py-2.5 rounded-xl items-center gap-2 shrink-0">
+                        <i class="fa-solid fa-book-open"></i> Lihat Materi
+                    </button>
+                </div>
+            </div>
+
+            <!-- Active Question Card -->
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-xl border-2 border-slate-200 space-y-6">
+                <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4">
+                    <div class="space-y-2">
+                        <span id="question-topic-badge" class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-lg">Topik Materi</span>
+                        <h2 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 leading-relaxed">
+                            Loading pertanyaan...
+                        </h2>
+                    </div>
+                    <button onclick="speakCurrentQuestion()" class="p-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-2xl shrink-0" title="Dengarkan Soal">
+                        <i class="fa-solid fa-volume-high text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Multiple Choice Options -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="quiz-options-container">
+                    <!-- Dynamic choices -->
+                </div>
+
+                <!-- Instant Feedback Banner -->
+                <div id="instant-feedback-box" class="hidden p-4 rounded-2xl border-2 space-y-1">
+                    <!-- Dynamic Feedback content -->
+                </div>
+
+                <div class="space-y-4 pt-2 border-t border-slate-100">
+                    <div class="flex justify-between items-center">
+                        <button id="prev-btn" onclick="navQuestion(-1)" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-left"></i> Sebelumnya
+                        </button>
+
+                        <button onclick="toggleQuestionMap()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl font-bold text-xs flex items-center gap-1.5">
+                            <i class="fa-solid fa-table-cells"></i> <span class="hidden sm:inline">Peta Soal</span>
+                        </button>
+
+                        <button id="next-btn" onclick="navQuestion(1)" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-sm flex items-center gap-2 shadow-md">
+                            Selanjutnya <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div id="question-map-grid" class="hidden p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+                        <span class="text-xs font-bold text-slate-500 block">Lompat ke Soal Nomor:</span>
+                        <div class="grid grid-cols-10 gap-1.5" id="question-buttons-container">
+                            <!-- Injected numbers -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 4: QUIZ RESULT & ANSWER KEYS -->
+        <section id="screen-result" class="hidden space-y-6">
+            <div class="bg-white rounded-3xl p-8 shadow-xl border-4 border-amber-300 text-center space-y-6 max-w-4xl mx-auto">
+                <div id="result-badge-icon" class="w-24 h-24 mx-auto rounded-full bg-amber-100 text-amber-500 flex items-center justify-center text-5xl shadow-inner">
+                    🏆
+                </div>
+
+                <div>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-800">Hasil Evaluasi Quis ATS</h2>
+                    <p class="text-slate-600 text-sm mt-1">Nama Siswa: <b id="result-user-name" class="text-slate-800"></b> (Kelas IV Harun)</p>
+                </div>
+
+                <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white p-6 rounded-3xl max-w-md mx-auto shadow-lg space-y-2">
+                    <span class="text-sm uppercase tracking-wider font-semibold opacity-90">NILAI AKHIR</span>
+                    <div id="result-score-number" class="font-heading text-6xl font-bold">100</div>
+                    <p id="result-status-text" class="text-sm font-semibold bg-white/20 py-1 px-4 rounded-full inline-block">Sempurna! Kamu Hebat Sekali!</p>
+                </div>
+
+                <div id="certificate-btn-wrapper" class="hidden">
+                    <button onclick="showCertificateModal()" class="btn-pop animate-pulse-subtle bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-heading text-xl px-8 py-4 rounded-2xl shadow-xl flex items-center justify-center gap-3 mx-auto">
+                        <i class="fa-solid fa-award text-2xl"></i> AMBIL SERTIFIKAT KELULUSAN KELAS IV HARUN!
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4 max-w-md mx-auto text-center font-bold">
+                    <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-2xl">
+                        <span class="text-xs text-emerald-600 block">Benar</span>
+                        <span id="stat-correct" class="text-2xl text-emerald-700">0</span>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 p-3 rounded-2xl">
+                        <span class="text-xs text-red-600 block">Salah</span>
+                        <span id="stat-wrong" class="text-2xl text-red-700">0</span>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-200 p-3 rounded-2xl">
+                        <span class="text-xs text-blue-600 block">Total Soal</span>
+                        <span class="text-2xl text-blue-700">50</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4 justify-center pt-4">
+                    <button onclick="restartQuiz()" class="px-6 py-3 bg-slate-800 hover:bg-slate-900 text-white rounded-xl font-bold text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-rotate-right"></i> Coba Quis Lagi
+                    </button>
+                    <button onclick="toggleAnswerKey()" class="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-key"></i> <span id="toggle-key-btn-text">Lihat Pembahasan Lengkap</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="answer-key-section" class="hidden space-y-4 max-w-4xl mx-auto">
+                <h3 class="font-heading text-2xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-book-bookmark text-amber-500"></i> Pembahasan Lengkap 50 Soal
+                </h3>
+                <div id="answer-key-container" class="space-y-4">
+                    <!-- Dynamically generated -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL WARNING: Skipping Material Notice -->
+    <div id="modal-warning" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full shadow-2xl border-4 border-red-400 text-center space-y-5">
+            <div class="w-16 h-16 bg-red-100 text-red-500 rounded-full flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="font-heading text-2xl font-bold text-slate-800">Eits, Baca Materi Dulu Yuk! 📚</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+                Kamu belum membaca materi. Silakan baca dan pelajari rangkuman <b>materi Pancasila</b> terlebih dahulu agar nilaimu maksimal 100!
+            </p>
+            <button onclick="closeWarningModalAndGoMateri()" class="btn-pop w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-heading text-lg rounded-2xl shadow-md">
+                Siap, Saya Mau Baca Materi!
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL CERTIFICATE DISPLAY & PRINT -->
+    <div id="modal-certificate" class="hidden fixed inset-0 bg-slate-900/75 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div class="max-w-4xl w-full my-8 space-y-4">
+            <div class="flex justify-between items-center text-white">
+                <span class="font-bold text-lg"><i class="fa-solid fa-award text-amber-400 mr-2"></i>Sertifikat Kelulusan ATS</span>
+                <button onclick="closeCertificateModal()" class="bg-white/20 hover:bg-white/30 text-white px-4 py-1.5 rounded-xl font-bold text-sm">
+                    <i class="fa-solid fa-xmark"></i> Tutup
+                </button>
+            </div>
+
+            <!-- Printable Certificate Body -->
+            <div id="printable-certificate" class="bg-gradient-to-b from-amber-50 via-white to-amber-50 p-8 md:p-12 rounded-3xl border-8 border-amber-400 shadow-2xl text-center relative overflow-hidden text-slate-800">
+                <div class="absolute top-3 left-3 w-16 h-16 border-t-4 border-l-4 border-amber-600"></div>
+                <div class="absolute top-3 right-3 w-16 h-16 border-t-4 border-r-4 border-amber-600"></div>
+                <div class="absolute bottom-3 left-3 w-16 h-16 border-b-4 border-l-4 border-amber-600"></div>
+                <div class="absolute bottom-3 right-3 w-16 h-16 border-b-4 border-r-4 border-amber-600"></div>
+
+                <div class="space-y-6 relative z-10 py-4">
+                    <div class="flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-star text-amber-500 text-2xl"></i>
+                        <h2 class="font-heading text-3xl md:text-5xl font-bold tracking-wider text-amber-900 uppercase">SERTIFIKAT PENGHARGAAN</h2>
+                        <i class="fa-solid fa-star text-amber-500 text-2xl"></i>
+                    </div>
+
+                    <p class="text-sm md:text-base text-slate-600 font-semibold uppercase tracking-widest">Diberikan Sebagai Bentuk Apresiasi Kepada:</p>
+
+                    <h3 id="cert-student-name" class="font-heading text-3xl md:text-5xl font-bold text-slate-900 border-b-4 border-amber-400 inline-block px-8 py-2">
+                        NAMA SISWA
+                    </h3>
+
+                    <p class="text-sm md:text-base text-slate-700 max-w-2xl mx-auto leading-relaxed">
+                        Telah berhasil menyelesaikan <b>Quis Pendidikan Pancasila Persiapan ATS</b> dengan perolehan nilai sempurna <b>100 (SERATUS)</b> pada kelas:
+                    </p>
+
+                    <div class="inline-block bg-amber-200 text-amber-900 font-bold px-6 py-2 rounded-full text-lg shadow-sm">
+                        🏫 KELAS IV HARUN
+                    </div>
+
+                    <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm border-t border-amber-200 mt-6">
+                        <div class="text-left">
+                            <p class="text-xs text-slate-500">Tanggal Terbit:</p>
+                            <p id="cert-date" class="font-bold text-slate-800">12 September 2026</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto mb-1 rounded-full bg-amber-500/10 border-2 border-amber-500 flex items-center justify-center text-amber-600 font-bold text-xs flex flex-col justify-center items-center">
+                                <i class="fa-solid fa-certificate text-2xl mb-1"></i>
+                                <span>LULUS ATS</span>
+                            </div>
+                            <p class="text-xs font-bold text-amber-800">Pendidikan Pancasila</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-slate-500">Pengembang Sistem:</p>
+                            <p class="font-bold text-slate-800">Giga Inovation</p>
+                            <p class="text-xs text-slate-600">📞 081329200985</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center pt-2">
+                <button onclick="window.print()" class="btn-pop px-8 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-2xl shadow-lg flex items-center gap-2 mx-auto">
+                    <i class="fa-solid fa-print"></i> Cetak / Simpan PDF Sertifikat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* Global Application State */
+        let userName = "";
+        let hasReadMateri = false;
+        let soundEnabled = true;
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(50).fill(null);
+
+        /* Web Audio Synthesizer */
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new AudioCtx();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+
+                if (type === 'click') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(600, now);
+                    osc.frequency.exponentialRampToValueAtTime(800, now + 0.05);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                } else if (type === 'correct') {
+                    // Bright 3-note cheerful melody (C5, E5, G5)
+                    const notes = [523.25, 659.25, 783.99];
+                    notes.forEach((freq, i) => {
+                        const noteOsc = audioCtx.createOscillator();
+                        const noteGain = audioCtx.createGain();
+                        noteOsc.connect(noteGain);
+                        noteGain.connect(audioCtx.destination);
+                        noteOsc.type = 'triangle';
+                        noteOsc.frequency.setValueAtTime(freq, now + (i * 0.08));
+                        noteGain.gain.setValueAtTime(0.3, now + (i * 0.08));
+                        noteGain.gain.exponentialRampToValueAtTime(0.01, now + (i * 0.08) + 0.2);
+                        noteOsc.start(now + (i * 0.08));
+                        noteOsc.stop(now + (i * 0.08) + 0.2);
+                    });
+                    // Audio voice prompt feedback
+                    speakText("Benar!");
+                } else if (type === 'wrong') {
+                    // Error buzzer (descending low tone)
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(260, now);
+                    osc.frequency.linearRampToValueAtTime(130, now + 0.25);
+                    gain.gain.setValueAtTime(0.35, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                    // Audio voice prompt feedback
+                    speakText("Salah!");
+                } else if (type === 'fanfare') {
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, i) => {
+                        const noteOsc = audioCtx.createOscillator();
+                        const noteGain = audioCtx.createGain();
+                        noteOsc.connect(noteGain);
+                        noteGain.connect(audioCtx.destination);
+                        noteOsc.frequency.setValueAtTime(freq, now + (i * 0.12));
+                        noteGain.gain.setValueAtTime(0.25, now + (i * 0.12));
+                        noteGain.gain.exponentialRampToValueAtTime(0.01, now + (i * 0.12) + 0.3);
+                        noteOsc.start(now + (i * 0.12));
+                        noteOsc.stop(now + (i * 0.12) + 0.3);
+                    });
+                    speakText("Selamat! Kamu meraih nilai seratus!");
+                }
+            } catch (e) {
+                console.log("Audio play error", e);
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('sound-toggle-btn');
+            const icon = document.getElementById('sound-icon');
+            if (soundEnabled) {
+                icon.className = "fa-solid fa-volume-high text-brand-blue";
+                btn.querySelector('span').innerText = "Suara: ON";
+                playSound('click');
+            } else {
+                icon.className = "fa-solid fa-volume-xmark text-slate-400";
+                btn.querySelector('span').innerText = "Suara: OFF";
+            }
+        }
+
+        function speakText(text) {
+            if (!soundEnabled) return;
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'id-ID';
+                utterance.rate = 1.0;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        const MATERI_DATA = [
+            {
+                id: 1,
+                title: "1. Rumah Tradisional di Indonesia",
+                badge: "Rumah Adat",
+                color: "bg-amber-500",
+                icon: "fa-house-chimney-window",
+                desc: "Rumah tradisional adalah bangunan khas daerah yang dirancang sesuai kondisi alam dan budaya masyarakat setempat.",
+                houses: [
+                    {
+                        name: "Rumah Joglo",
+                        loc: "Jawa Tengah & DIY",
+                        feat: "Memiliki atap tinggi berbentuk tajug/piramida dan tiang utama (soko guru).",
+                        svg: `<svg class="w-full h-24 text-amber-700" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 50 L25 25 L40 10 L60 10 L75 25 L90 50 Z" fill="#fef3c7" stroke="#b45309"/><path d="M30 50 L30 30 L70 30 L70 50" fill="#fde68a"/><rect x="42" y="35" width="16" height="15" fill="#d97706"/><line x1="10" y1="50" x2="90" y2="50" stroke="#78350f" stroke-width="3"/></svg>`
+                    },
+                    {
+                        name: "Rumah Gadang",
+                        loc: "Sumatera Barat (Minangkabau)",
+                        feat: "Atap runcing melengkung di kedua ujungnya menyerupai tanduk kerbau (Gonjong).",
+                        svg: `<svg class="w-full h-24 text-amber-700" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 20 Q 25 35 50 25 Q 75 35 95 20 L80 40 L20 40 Z" fill="#fef3c7" stroke="#b45309"/><path d="M20 40 L20 55 L80 55 L80 40" fill="#fde68a"/><rect x="42" y="42" width="16" height="13" fill="#d97706"/><line x1="15" y1="55" x2="85" y2="55" stroke="#78350f" stroke-width="3"/></svg>`
+                    },
+                    {
+                        name: "Rumah Honai",
+                        loc: "Papua (Suku Dani & Asmat)",
+                        feat: "Berbentuk lingkaran tanpa jendela dengan atap jerami/ilalang tebal penahan dingin.",
+                        svg: `<svg class="w-full h-24 text-amber-700" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 40 C20 15, 80 15, 80 40 Z" fill="#fde68a" stroke="#b45309"/><rect x="25" y="38" width="50" height="15" fill="#fef3c7" stroke="#b45309"/><rect x="43" y="42" width="14" height="11" fill="#78350f"/></svg>`
+                    },
+                    {
+                        name: "Rumah Tongkonan",
+                        loc: "Sulawesi Selatan (Toraja)",
+                        feat: "Atap melengkung tinggi menyerupai perahu atau tanduk kerbau bertumpuk.",
+                        svg: `<svg class="w-full h-24 text-amber-700" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15 Q 50 35 90 15 L75 38 L25 38 Z" fill="#fde68a" stroke="#b45309"/><rect x="30" y="38" width="40" height="17" fill="#fef3c7" stroke="#b45309"/><rect x="44" y="43" width="12" height="12" fill="#d97706"/></svg>`
+                    }
+                ],
+                points: [
+                    "<b>Rumah Joglo:</b> Beratap Tajug/Piramida khas suku Jawa (Jawa Tengah & DIY).",
+                    "<b>Rumah Gadang:</b> Beratap Gonjong berbentuk tanduk kerbau dari Sumatera Barat.",
+                    "<b>Rumah Honai:</b> Rumah berbentuk bulat tanpa jendela dari suku Dani di Papua.",
+                    "<b>Rumah Tongkonan:</b> Beratap bentuk perahu khas suku Toraja dari Sulawesi Selatan."
+                ]
+            },
+            {
+                id: 2,
+                title: "2. Tari Tradisional di Indonesia",
+                badge: "Kesenian Tari",
+                color: "bg-emerald-500",
+                icon: "fa-person-dots-from-line",
+                svg: `<svg class="w-20 h-20 text-emerald-500 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M6 21v-4a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v4"/><path d="M4 11l4-2"/><path d="M20 11l-4-2"/></svg>`,
+                desc: "Tarian tradisional mewakili nilai keindahan, kekompakan, dan kebudayaan daerah.",
+                points: [
+                    "<b>Tari Saman:</b> Berasal dari Aceh, terkenal dengan ritme cepat dan kekompakan penari.",
+                    "<b>Tari Kecak & Tari Pendet:</b> Berasal dari Bali.",
+                    "<b>Tari Jaipong:</b> Tarian lincah dan enerjik dari Jawa Barat.",
+                    "<b>Tari Piring:</b> Menggunakan piring di tangan khas Minangkabau (Sumatera Barat)."
+                ]
+            },
+            {
+                id: 3,
+                title: "3. Bahasa Persatuan Indonesia",
+                badge: "Bahasa Nasional",
+                color: "bg-red-500",
+                icon: "fa-comments",
+                svg: `<svg class="w-20 h-20 text-red-500 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8"/><path d="M8 13h6"/></svg>`,
+                desc: "Bahasa persatuan seluruh bangsa Indonesia adalah <b>Bahasa Indonesia</b>.",
+                points: [
+                    "Dicetuskan dalam ikrar <b>Sumpah Pemuda</b> pada tanggal <b>28 Oktober 1928</b>.",
+                    "Memfasilitasi komunikasi dan pergaulan antarsuku bangsa yang berbeda bahasa daerah.",
+                    "Menyatukan keberagaman suku tanpa menghilangkan bahasa daerah masing-masing."
+                ]
+            },
+            {
+                id: 4,
+                title: "4. Lagu Tradisional Indonesia",
+                badge: "Musik Daerah",
+                color: "bg-blue-500",
+                icon: "fa-music",
+                svg: `<svg class="w-20 h-20 text-blue-500 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`,
+                desc: "Lagu daerah diajarkan secara turun-temurun dan mencerminkan kebiasaan daerah.",
+                points: [
+                    "<b>Gundul-Gundul Pacul:</b> Lagu daerah dari Jawa Tengah.",
+                    "<b>Ampar-Ampar Pisang:</b> Lagu daerah dari Kalimantan Selatan.",
+                    "<b>Bungong Jeumpa:</b> Lagu daerah dari Aceh.",
+                    "<b>Yamko Rambe Yamko:</b> Lagu daerah dari Papua.",
+                    "<b>Manuk Dadali:</b> Lagu daerah dari Jawa Barat."
+                ]
+            },
+            {
+                id: 5,
+                title: "5. Cara Melestarikan Budaya Indonesia",
+                badge: "Pelestarian Budaya",
+                color: "bg-purple-500",
+                icon: "fa-heart",
+                svg: `<svg class="w-20 h-20 text-purple-500 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`,
+                desc: "Melestarikan budaya adalah kewajiban bersama seluruh warga negara Indonesia.",
+                points: [
+                    "Mempelajari seni tari, musik, dan bahasa daerah.",
+                    "Bangga mengenakan kain khas tradisional seperti Batik pada kegiatan sekolah.",
+                    "Menghargai dan tidak mengejek tradisi daerah lain.",
+                    "Menonton dan mendukung pertunjukan pentas seni kebudayaan Nusantara."
+                ]
+            },
+            {
+                id: 6,
+                title: "6. Pengertian Kelurahan",
+                badge: "Pemerintahan",
+                color: "bg-teal-500",
+                icon: "fa-building-columns",
+                svg: `<svg class="w-20 h-20 text-teal-500 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/></svg>`,
+                desc: "Kelurahan adalah wilayah kerja <b>Lurah</b> sebagai perangkat daerah kabupaten/kota.",
+                points: [
+                    "Kelurahan berada di bawah tingkat <b>Kecamatan</b>.",
+                    "Pemimpin wilayah kelurahan disebut <b>Lurah</b>.",
+                    "Lurah merupakan Pegawai Negeri Sipil (PNS/ASN) yang diangkat oleh Bupati/Wali Kota."
+                ]
+            },
+            {
+                id: 7,
+                title: "7. Masa Jabatan Kepala Desa",
+                badge: "Pemerintahan Desa",
+                color: "bg-amber-600",
+                icon: "fa-user-tie",
+                svg: `<svg class="w-20 h-20 text-amber-600 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>`,
+                desc: "Kepala Desa adalah pemimpin pemerintah desa yang dipilih langsung oleh warga desa.",
+                points: [
+                    "Berdasarkan UU Desa terbaru (UU No. 3 Tahun 2024), masa jabatan Kepala Desa adalah <b>8 tahun</b> dalam 1 periode.",
+                    "Kepala Desa dapat menjabat paling banyak <b>2 kali masa jabatan</b>.",
+                    "Kepala desa dipilih secara langsung oleh rakyat melalui Pilkades (Pemilihan Kepala Desa)."
+                ]
+            },
+            {
+                id: 8,
+                title: "8. Makanan Tradisional Indonesia",
+                badge: "Kuliner Nusantara",
+                color: "bg-orange-500",
+                icon: "fa-bowl-food",
+                svg: `<svg class="w-20 h-20 text-orange-500 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 10.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/></svg>`,
+                desc: "Makanan tradisional merupakan warisan kuliner khas di tiap daerah Indonesia.",
+                points: [
+                    "<b>Rendang:</b> Makanan tradisional khas Minangkabau (Sumatera Barat).",
+                    "<b>Pempek:</b> Olahan ikan khas Palembang (Sumatera Selatan).",
+                    "<b>Gudeg:</b> Makanan manis gurih berbahan nangka muda khas Yogyakarta.",
+                    "<b>Lumpia:</b> Jajanan tradisional khas Semarang (Jawa Tengah).",
+                    "<b>Papeda:</b> Makanan berbahan dasar tepung sagu khas Papua & Maluku."
+                ]
+            },
+            {
+                id: 9,
+                title: "9. Suku di Indonesia",
+                badge: "Keragaman Suku",
+                color: "bg-indigo-500",
+                icon: "fa-users-line",
+                svg: `<svg class="w-20 h-20 text-indigo-500 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+                desc: "Indonesia memiliki lebih dari 300 suku bangsa dari Sabang sampai Merauke.",
+                points: [
+                    "<b>Suku Jawa & Sunda:</b> Mendiami pulau Jawa.",
+                    "<b>Suku Batak & Minangkabau:</b> Mendiami pulau Sumatera.",
+                    "<b>Suku Dayak & Banjar:</b> Mendiami pulau Kalimantan.",
+                    "<b>Suku Bugis & Toraja:</b> Mendiami pulau Sulawesi.",
+                    "<b>Suku Asmat & Dani:</b> Mendiami pulau Papua."
+                ]
+            },
+            {
+                id: 10,
+                title: "10. 6 Agama Resmi di Indonesia",
+                badge: "Keagamaan",
+                color: "bg-emerald-600",
+                icon: "fa-hands-praying",
+                svg: `<svg class="w-20 h-20 text-emerald-600 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+                desc: "Negara Indonesia mengakui <b>6 agama resmi</b> beserta tempat ibadah dan hari besarnya:",
+                points: [
+                    "<b>Islam:</b> Tempat Ibadah: <i>Masjid</i> | Hari Besar: Idul Fitri & Idul Adha.",
+                    "<b>Kristen Protestan:</b> Tempat Ibadah: <i>Gereja</i> | Hari Besar: Natal & Paskah.",
+                    "<b>Katolik:</b> Tempat Ibadah: <i>Gereja</i> | Hari Besar: Natal & Paskah.",
+                    "<b>Hindu:</b> Tempat Ibadah: <i>Pura</i> | Hari Besar: Nyepi & Galungan.",
+                    "<b>Buddha:</b> Tempat Ibadah: <i>Vihara</i> | Hari Besar: Waisak.",
+                    "<b>Khonghucu:</b> Tempat Ibadah: <i>Klenteng / Litang</i> | Hari Besar: Imlek."
+                ]
+            },
+            {
+                id: 11,
+                title: "11. Upacara Adat di Indonesia",
+                badge: "Tradisi Adat",
+                color: "bg-rose-500",
+                icon: "fa-fire-flame-curved",
+                svg: `<svg class="w-20 h-20 text-rose-500 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10c0 3-2 5.5-5 7-3-1.5-5-4-5-7 0-1.5.5-2.5 1.5-3.5C9.5 5.5 11 5 12 2z"/></svg>`,
+                desc: "Upacara adat dilaksanakan sebagai penghormatan tradisi, leluhur, atau keagamaan.",
+                points: [
+                    "<b>Ngaben:</b> Upacara adat kremasi / pembakaran jenazah di Bali.",
+                    "<b>Rambu Solo':</b> Upacara adat pemakaman unik suku Toraja di Sulawesi Selatan.",
+                    "<b>Yadnya Kasada:</b> Upacara sesaji suku Tengger di kawah Gunung Bromo.",
+                    "<b>Sekaten:</b> Upacara peringatan Maulid Nabi di Surakarta & Yogyakarta."
+                ]
+            },
+            {
+                id: 12,
+                title: "12. Pengertian Suku Bangsa",
+                badge: "Definisi Suku",
+                color: "bg-blue-600",
+                icon: "fa-people-group",
+                svg: `<svg class="w-20 h-20 text-blue-600 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+                desc: "<b>Suku Bangsa</b> adalah sekelompok manusia yang memiliki kesamaan identitas dan kebudayaan.",
+                points: [
+                    "Terikat oleh kesadaran dan rasa kesatuan kebudayaan.",
+                    "Memiliki ciri khas yang sama seperti bahasa ibu/daerah, adat istiadat, asal-usul nenek moyang, dan tradisi lokal."
+                ]
+            },
+            {
+                id: 13,
+                title: "13. Identitas Masyarakat",
+                badge: "Ciri Khas",
+                color: "bg-amber-600",
+                icon: "fa-id-card",
+                svg: `<svg class="w-20 h-20 text-amber-600 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="14" x="3" y="5" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M15 11h.01"/><path d="M15 15h.01"/></svg>`,
+                desc: "<b>Identitas masyarakat</b> adalah ciri khas yang membedakan satu komunitas masyarakat dengan komunitas lainnya.",
+                points: [
+                    "Unsur identitas meliputi: <b>Bahasa daerah, pakaian tradisional, tata cara pernikahan, lagu daerah, dan makanan khas.</b>",
+                    "Mewujudkan nilai-nilai kearifan lokal yang diwariskan antar-generasi."
+                ]
+            },
+            {
+                id: 14,
+                title: "14. Alat Musik Tradisional di Indonesia",
+                badge: "Kesenian Musik",
+                color: "bg-emerald-600",
+                icon: "fa-drum",
+                svg: `<svg class="w-20 h-20 text-emerald-600 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="9" rx="10" ry="5"/><path d="M2 9v6c0 2.76 4.48 5 10 5s10-2.24 10-5V9"/></svg>`,
+                desc: "Alat musik tradisional dimainkan dengan beragam cara yang khas.",
+                points: [
+                    "<b>Angklung:</b> Berasal dari Jawa Barat, cara memainkannya <i>digoyang</i>.",
+                    "<b>Gamelan:</b> Berasal dari Jawa & Bali, cara memainkannya <i>dipukul</i>.",
+                    "<b>Sasando:</b> Berasal dari Rote (NTT), cara memainkannya <i>dipetik</i>.",
+                    "<b>Kolintang:</b> Berasal dari Minahasa (Sulawesi Utara), cara memainkannya <i>dipukul</i>.",
+                    "<b>Tifa:</b> Berasal dari Maluku & Papua, cara memainkannya <i>dipukul</i>."
+                ]
+            },
+            {
+                id: 15,
+                title: "15. Contoh Lingkungan Buatan",
+                badge: "Lingkungan",
+                color: "bg-sky-500",
+                icon: "fa-bridge",
+                svg: `<svg class="w-20 h-20 text-sky-500 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10V4H2v16h20V4h-2v6"/><path d="M4 14h16"/></svg>`,
+                desc: "<b>Lingkungan Buatan</b> adalah lingkungan yang sengaja dibuat oleh manusia untuk memenuhi kebutuhan hidup.",
+                points: [
+                    "<b>Waduk / Bendungan:</b> Penampungan air buatan untuk irigasi sawah & PLTA.",
+                    "<b>Jalan Raya & Jembatan:</b> Sarana perhubungan pergerakan manusia & kendaraan.",
+                    "<b>Sawah & Perkebunan:</b> Lahan buatan manusia untuk bercocok tanam.",
+                    "<b>Taman Kota, Gedung Sekolah, Pelabuhan, dan Bandara.</b>"
+                ]
+            }
+        ];
+
+        const QUIZ_DATA = [
+            // 1-4: Rumah Tradisional
+            { q: "Rumah adat khas Jawa Tengah yang memiliki atap tajug (piramida) dan tiang utama soko guru adalah...", opts: ["Rumah Joglo", "Rumah Gadang", "Rumah Honai", "Rumah Tongkonan"], ans: 0, topic: "Rumah Tradisional", exp: "Rumah Joglo adalah rumah tradisional masyarakat Jawa di Jawa Tengah & DIY dengan atap Tajug." },
+            { q: "Rumah Gadang dengan atap melengkung runcing seperti tanduk kerbau (Gonjong) berasal dari daerah...", opts: ["Sumatera Utara", "Sumatera Barat", "Sulawesi Selatan", "Papua"], ans: 1, topic: "Rumah Tradisional", exp: "Rumah Gadang merupakan rumah adat Minangkabau, Sumatera Barat." },
+            { q: "Rumah Honai memiliki bentuk bulat bundar tanpa jendela dan beratap jerami tebal. Rumah ini berasal dari...", opts: ["Bali", "NTT", "Papua", "Kalimantan"], ans: 2, topic: "Rumah Tradisional", exp: "Rumah Honai dirancang oleh Suku Dani di Papua untuk menahan hawa dingin pegunungan." },
+            { q: "Suku Toraja di Sulawesi Selatan memiliki rumah adat beratap melengkung seperti perahu yang dinamakan...", opts: ["Rumah Limas", "Rumah Tongkonan", "Rumah Kebaya", "Rumah Panjang"], ans: 1, topic: "Rumah Tradisional", exp: "Rumah Tongkonan adalah rumah adat masyarakat Toraja di Sulawesi Selatan." },
+
+            // 5-7: Tari Tradisional
+            { q: "Tarian tradisional dari Aceh yang dimainkan secara berkelompok dengan gerakan cepat dan tepukan dada yang kompak adalah...", opts: ["Tari Pendet", "Tari Saman", "Tari Jaipong", "Tari kecak"], ans: 1, topic: "Tari Tradisional", exp: "Tari Saman dari Aceh sangat terkenal hingga internasional karena irama tepukan dan kekompakannya." },
+            { q: "Tari Kecak dan Tari Pendet merupakan seni tari tradisional yang berasal dari provinsi...", opts: ["Jawa Timur", "Bali", "Nusa Tenggara Barat", "Jawa Barat"], ans: 1, topic: "Tari Tradisional", exp: "Tari Kecak dan Pendet adalah tarian khas daerah Bali." },
+            { q: "Tari Piring yang dimainkan dengan memegang piring di telapak tangan penari merupakan tarian khas...", opts: ["Minangkabau (Sumatera Barat)", "Sunda (Jawa Barat)", "Batak (Sumatera Utara)", "Dayak (Kalimantan)"], ans: 0, topic: "Tari Tradisional", exp: "Tari Piring berasal dari kebudayaan Minangkabau di Sumatera Barat." },
+
+            // 8-10: Bahasa Persatuan
+            { q: "Bahasa persatuan yang mempersatukan seluruh suku bangsa di Indonesia adalah...", opts: ["Bahasa Jawa", "Bahasa Inggris", "Bahasa Indonesia", "Bahasa Melayu"], ans: 2, topic: "Bahasa Persatuan", exp: "Bahasa Indonesia berfungsi sebagai bahasa persatuan seluruh warga negara Indonesia." },
+            { q: "Peristiwa sejarah di mana Bahasa Indonesia dikukuhkan sebagai bahasa persatuan adalah...", opts: ["Proklamasi Kemerdekaan", "Sumpah Pemuda", "Hari Lahir Pancasila", "Budi Utomo"], ans: 1, topic: "Bahasa Persatuan", exp: "Bahasa Indonesia diikrarkan sebagai bahasa persatuan dalam peristiwa Sumpah Pemuda 28 Oktober 1928." },
+            { q: "Peran utama Bahasa Indonesia bagi keragaman suku di Nusantara adalah...", opts: ["Menghapus penggunaan bahasa daerah", "Sebagai sarana komunikasi antarsuku", "Menjadikan semua budaya sama", "Mengabaikan tradisi daerah"], ans: 1, topic: "Bahasa Persatuan", exp: "Bahasa Indonesia memungkinkan komunikasi lancar antarsuku yang memiliki bahasa daerah berbeda." },
+
+            // 11-13: Lagu Tradisional
+            { q: "Lagu daerah 'Gundul-Gundul Pacul' berasal dari provinsi...", opts: ["Jawa Tengah", "Jawa Barat", "DKI Jakarta", "Jawa Timur"], ans: 0, topic: "Lagu Tradisional", exp: "Gundul-Gundul Pacul adalah lagu anak tradisional dari Jawa Tengah." },
+            { q: "Lagu daerah 'Ampar-Ampar Pisang' diciptakan dan berkembang di daerah...", opts: ["Kalimantan Selatan", "Sumatera Selatan", "Sulawesi Selatan", "Papua"], ans: 0, topic: "Lagu Tradisional", exp: "Ampar-Ampar Pisang adalah lagu daerah Kalimantan Selatan." },
+            { q: "Lagu daerah 'Yamko Rambe Yamko' berasal dari daerah...", opts: ["Maluku", "Papua", "NTT", "Aceh"], ans: 1, topic: "Lagu Tradisional", exp: "Yamko Rambe Yamko merupakan lagu daerah dari Papua." },
+
+            // 14-17: Pelestarian Budaya
+            { q: "Berikut ini tindakan yang tepat untuk melestarikan budaya Indonesia adalah...", opts: ["Mengejek pakaian tradisional daerah lain", "Mempelajari tari dan lagu daerah", "Hanya menyukai budaya asing", "Malu mengenakan Batik"], ans: 1, topic: "Pelestarian Budaya", exp: "Mempelajari tarian dan lagu daerah adalah wujud nyata melestarikan budaya bangsa." },
+            { q: "Sikap yang baik ketika melihat pertunjukan seni daerah lain adalah...", opts: ["Menonton dengan tertib dan menghargai", "Mengganggu penari", "Meninggalkan lokasi sambil mengeluh", "Menertawakan pakaian penari"], ans: 0, topic: "Pelestarian Budaya", exp: "Menghargai seni budaya daerah lain menunjukkan sikap toleransi dan persatuan." },
+            { q: "Bangga memakai pakaian Batik saat acara sekolah merupakan contoh...", opts: ["Sifat sombong", "Melestarikan warisan budaya Indonesia", "Pemborosan uang", "Memilih-milih teman"], ans: 1, topic: "Pelestarian Budaya", exp: "Memakai batik menunjukkan rasa cinta dan bangga terhadap kebudayaan nasional." },
+            { q: "Mengapa kita tidak boleh menjelek-jelekkan tradisi suku bangsa lain?", opts: ["Agar dipuji guru", "Karena dapat merusak persatuan dan kesatuan bangsa", "Karena dipaksa undang-undang", "Agar mendapatkan hadiah"], ans: 1, topic: "Pelestarian Budaya", exp: "Saling menghargai tradisi menjaga kerukunan dan persatuan bangsa Indonesia." },
+
+            // 18-21: Kelurahan
+            { q: "Kelurahan merupakan wilayah kerja pemerintahan yang dipimpin oleh seorang...", opts: ["Camat", "Kepala Desa", "Lurah", "Bupati"], ans: 2, topic: "Pengertian Kelurahan", exp: "Wilayah kelurahan dipimpin oleh seorang Lurah." },
+            { q: "Kelurahan berada di bawah tingkat pemerintahan...", opts: ["Kecamatan", "RT", "RW", "Provinsi"], ans: 0, topic: "Pengertian Kelurahan", exp: "Kelurahan merupakan perangkat daerah kabupaten/kota di bawah Kecamatan." },
+            { q: "Status kepegawaian seorang Lurah adalah...", opts: ["Dipilih langsung oleh rakyat", "Pegawai Negeri Sipil (PNS/ASN) yang diangkat Bupati/Wali Kota", "Tokoh masyarakat sukarela", "Dipilih oleh ketua RT"], ans: 1, topic: "Pengertian Kelurahan", exp: "Lurah adalah seorang Pegawai Negeri Sipil (ASN) yang diangkat oleh kepala daerah." },
+            { q: "Perbedaan utama antara Kelurahan dan Desa terletak pada...", opts: ["Status pemimpinnya (Lurah adalah PNS, Kades dipilih rakyat)", "Luas wilayahnya", "Bentuk benderanya", "Jumlah penduduknya"], ans: 0, topic: "Pengertian Kelurahan", exp: "Lurah disatukan sebagai PNS Pemkab/Pemkot, sedangkan Kepala Desa dipilih langsung warga desa." },
+
+            // 22-24: Masa Jabatan Kades
+            { q: "Berdasarkan aturan UU Desa terbaru (UU No. 3 Tahun 2024), masa jabatan Kepala Desa adalah...", opts: ["5 tahun", "6 tahun", "8 tahun", "10 tahun"], ans: 2, topic: "Masa Jabatan Kades", exp: "Sesuai UU Desa No. 3 Tahun 2024, masa jabatan Kepala Desa menjadi 8 tahun untuk 1 periode." },
+            { q: "Seorang Kepala Desa dapat menjabat paling banyak selama...", opts: ["1 periode", "2 periode", "3 periode", "Tanpa batas"], ans: 1, topic: "Masa Jabatan Kades", exp: "Kepala desa dapat menjabat paling banyak 2 kali masa jabatan (2 periode)." },
+            { q: "Proses pemilihan Kepala Desa oleh seluruh warga desa secara langsung disebut...", opts: ["Pemilu", "Pilkada", "Pilkades", "Musyawarah RT"], ans: 2, topic: "Masa Jabatan Kades", exp: "Pilkades adalah singkatan dari Pemilihan Kepala Desa." },
+
+            // 25-28: Makanan Tradisional
+            { q: "Makanan tradisional Rendang yang terkenal hingga internasional berasal dari...", opts: ["Minangkabau (Sumatera Barat)", "Palembang (Sumatera Selatan)", "Sunda (Jawa Barat)", "Yogyakarta"], ans: 0, topic: "Makanan Tradisional", exp: "Rendang adalah kuliner khas Minangkabau, Sumatera Barat." },
+            { q: "Pempek merupakan olahan makanan khas berbahan ikan dan sagu yang berasal dari...", opts: ["Medan", "Palembang", "Lampung", "Padang"], ans: 1, topic: "Makanan Tradisional", exp: "Pempek adalah makanan tradisional khas Kota Palembang, Sumatera Selatan." },
+            { q: "Gudeg adalah makanan khas berkesan manis gurih terbuat dari nangka muda yang berasal dari...", opts: ["Yogyakarta", "Semarang", "Surakarta", "Bandung"], ans: 0, topic: "Makanan Tradisional", exp: "Gudeg merupakan makanan tradisional khas D.I. Yogyakarta." },
+            { q: "Makanan khas daerah Papua dan Maluku berbahan dasar tepung sagu bertekstur lengket adalah...", opts: ["Lumpia", "Papeda", "Kerak Telor", "Bika Ambon"], ans: 1, topic: "Makanan Tradisional", exp: "Papeda adalah makanan pokok/tradisional dari Papua dan Maluku." },
+
+            // 29-32: Suku di Indonesia
+            { q: "Suku Batak dan Suku Minangkabau sebagian besar bermukim di Pulau...", opts: ["Jawa", "Sumatera", "Kalimantan", "Sulawesi"], ans: 1, topic: "Suku di Indonesia", exp: "Suku Batak (Sumut) dan Minangkabau (Sumbar) berada di Pulau Sumatera." },
+            { q: "Suku Dayak dan Suku Banjar merupakan suku bangsa asli dari Pulau...", opts: ["Kalimantan", "Sulawesi", "Papua", "Nusa Tenggara"], ans: 0, topic: "Suku di Indonesia", exp: "Suku Dayak dan Banjar mendiami Pulau Kalimantan." },
+            { q: "Suku Asmat dan Suku Dani merupakan dua suku kenamaan yang berasal dari...", opts: ["NTT", "Maluku", "Papua", "Bali"], ans: 2, topic: "Suku di Indonesia", exp: "Suku Asmat dan Suku Dani berasal dari Papua." },
+            { q: "Suku Bugis dan Suku Toraja bermukim di Pulau...", opts: ["Sumatera", "Jawa", "Sulawesi", "Kalimantan"], ans: 2, topic: "Suku di Indonesia", exp: "Suku Bugis dan Toraja berada di Pulau Sulawesi." },
+
+            // 33-36: 6 Agama Resmi
+            { q: "Tempat ibadah bagi umat beragama Hindu di Indonesia adalah...", opts: ["Masjid", "Gereja", "Pura", "Vihara"], ans: 2, topic: "6 Agama Resmi", exp: "Pura merupakan tempat ibadah umat Hindu." },
+            { q: "Hari raya Waisak dirayakan oleh umat beragama...", opts: ["Buddha", "Hindu", "Khonghucu", "Islam"], ans: 0, topic: "6 Agama Resmi", exp: "Waisak merupakan hari besar keagamaan umat Buddha." },
+            { q: "Klenteng / Litang merupakan tempat ibadah resmi bagi penganut agama...", opts: ["Katolik", "Khonghucu", "Hindu", "Protestan"], ans: 1, topic: "6 Agama Resmi", exp: "Klenteng / Litang adalah tempat ibadah umat Khonghucu." },
+            { q: "Idul Fitri dan Idul Adha merupakan hari besar keagamaan umat...", opts: ["Kristen", "Hindu", "Islam", "Buddha"], ans: 2, topic: "6 Agama Resmi", exp: "Idul Fitri dan Idul Adha adalah hari raya utama umat Islam." },
+
+            // 37-39: Upacara Adat
+            { q: "Upacara adat kremasi atau pembakaran jenazah di Bali dinamakan...", opts: ["Ngaben", "Rambu Solo'", "Sekaten", "Yadnya Kasada"], ans: 0, topic: "Upacara Adat", exp: "Ngaben adalah upacara pembakaran jenazah khas Bali." },
+            { q: "Upacara pemakaman adat suku Toraja di Sulawesi Selatan dinamakan...", opts: ["Rambu Solo'", "Seren Taun", "Ngaben", "Sekaten"], ans: 0, topic: "Upacara Adat", exp: "Rambu Solo' adalah upacara pemakaman tradisional di Toraja." },
+            { q: "Upacara persembahan sesaji ke kawah Gunung Bromo oleh Suku Tengger disebut...", opts: ["Ngaben", "Yadnya Kasada", "Sekaten", "Grebeg Syawal"], ans: 1, topic: "Upacara Adat", exp: "Yadnya Kasada dilakukan suku Tengger di kawah Bromo." },
+
+            // 40-42: Pengertian Suku Bangsa
+            { q: "Sekelompok manusia yang memiliki kesamaan identitas, asal-usul, bahasa, dan kebudayaan dinamakan...", opts: ["Suku Bangsa", "Partai Politik", "Organisasi", "Kelas Sosial"], ans: 0, topic: "Pengertian Suku Bangsa", exp: "Suku bangsa adalah kelompok masyarakat yang terikat kesamaan budaya & identitas." },
+            { q: "Ciri paling menonjol yang membedakan suku bangsa satu dengan lainnya adalah...", opts: ["Jumlah uang", "Bahasa daerah, adat istiadat, dan tradisi", "Jenis kendaraan", "Ukuran rumah"], ans: 1, topic: "Pengertian Suku Bangsa", exp: "Suku bangsa dibedakan oleh bahasa ibu, adat istiadat, serta tradisi." },
+            { q: "Sikap kita terhadap keanekaragaman suku bangsa di Indonesia sebaiknya...", opts: ["Saling membeda-bedakan", "Saling menghormati dan menjaga persatuan", "Mengabaikan suku lain", "Memusuhi suku tetangga"], ans: 1, topic: "Pengertian Suku Bangsa", exp: "Menghormati keragaman suku menciptakan kedamaian dan kerukunan." },
+
+            // 43-45: Identitas Masyarakat
+            { q: "Pengertian dari Identitas Masyarakat adalah...", opts: ["Kartu Tanda Penduduk saja", "Ciri khas yang membedakan suatu komunitas masyarakat dengan komunitas lainnya", "Aturan lalu lintas", "Peta wilayah Indonesia"], ans: 1, topic: "Identitas Masyarakat", exp: "Identitas masyarakat mencakup ciri khas kebudayaan lokal suatu daerah." },
+            { q: "Berikut ini yang TERMASUK unsur identitas budaya masyarakat adalah...", opts: ["Pakaian adat, bahasa daerah, dan lagu daerah", "Merek handphone", "Jenis mobil", "Nilai uang kertas"], ans: 0, topic: "Identitas Masyarakat", exp: "Pakaian, bahasa, lagu, dan seni daerah membentuk identitas kebudayaan." },
+            { q: "Mengapa identitas masyarakat perlu dijaga dan diwariskan?", opts: ["Agar tidak punah dan tetap menjadi jati diri bangsa", "Agar terlihat keren di media sosial", "Agar dijual ke luar negeri", "Agar tidak perlu sekolah"], ans: 0, topic: "Identitas Masyarakat", exp: "Pelestarian identitas menjaga keberlanjutan kearifan lokal bangsa." },
+
+            // 46-48: Alat Musik Tradisional
+            { q: "Alat musik Angklung dari Jawa Barat dimainkan dengan cara...", opts: ["Dipukul", "Digoyang", "Dipetik", "Ditiup"], ans: 1, topic: "Alat Musik Tradisional", exp: "Angklung menghasilkan nada indah saat digoyangkan." },
+            { q: "Alat musik Sasando dari daerah Rote (Nusa Tenggara Timur) dimainkan dengan cara...", opts: ["Dipetik", "Dipukul", "Ditiup", "Digoyang"], ans: 0, topic: "Alat Musik Tradisional", exp: "Sasando dimainkan dengan cara dipetik dawainya." },
+            { q: "Gamelan dan Kolintang adalah alat musik tradisional yang dimainkan dengan cara...", opts: ["Dipukul", "Ditiup", "Dipetik", "Digoyang"], ans: 0, topic: "Alat Musik Tradisional", exp: "Gamelan dan Kolintang dimainkan dengan cara dipukul menggunakan pemukul khusus." },
+
+            // 49-50: Contoh Lingkungan Buatan
+            { q: "Manakah di bawah ini yang merupakan contoh lingkungan buatan manusia?", opts: ["Hutan rimba dan laut", "Waduk, jalan raya, dan sekolah", "Gunung dan sungai", "Danau alami dan samudra"], ans: 1, topic: "Lingkungan Buatan", exp: "Waduk, jalan raya, dan sekolah sengaja dibangun manusia untuk pemenuhan kebutuhan." },
+            { q: "Bangunan penampung air buatan manusia yang berfungsi untuk irigasi sawah dan pembangkit listrik adalah...", opts: ["Sungai", "Waduk / Bendungan", "Laut", "Air Terjun"], ans: 1, topic: "Lingkungan Buatan", exp: "Waduk/Bendungan adalah lingkungan buatan manusia penampung air." }
+        ];
+
+        function handleStartMateri() {
+            const nameInput = document.getElementById('student-name-input').value.trim();
+            if (nameInput === "") {
+                alert("Silakan tuliskan nama lengkapmu terlebih dahulu ya!");
+                return;
+            }
+            userName = nameInput;
+            hasReadMateri = true;
+            document.getElementById('nav-user-name').innerText = userName;
+            document.getElementById('user-display').classList.remove('hidden');
+
+            playSound('click');
+            showScreen('screen-materi');
+            renderMateri();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleTryDirectQuiz() {
+            const nameInput = document.getElementById('student-name-input').value.trim();
+            if (nameInput === "") {
+                alert("Silakan tuliskan nama lengkapmu terlebih dahulu ya!");
+                return;
+            }
+            userName = nameInput;
+            document.getElementById('nav-user-name').innerText = userName;
+
+            if (!hasReadMateri) {
+                playSound('wrong');
+                document.getElementById('modal-warning').classList.remove('hidden');
+            } else {
+                startQuiz();
+            }
+        }
+
+        function closeWarningModalAndGoMateri() {
+            playSound('click');
+            document.getElementById('modal-warning').classList.add('hidden');
+            hasReadMateri = true;
+            showScreen('screen-materi');
+            renderMateri();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function markMaterialReadAndGoQuiz() {
+            hasReadMateri = true;
+            playSound('click');
+            startQuiz();
+        }
+
+        function returnToMaterialFromQuiz() {
+            playSound('click');
+            showScreen('screen-materi');
+            renderMateri();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showScreen(screenId) {
+            document.getElementById('screen-welcome').classList.add('hidden');
+            document.getElementById('screen-materi').classList.add('hidden');
+            document.getElementById('screen-quiz').classList.add('hidden');
+            document.getElementById('screen-result').classList.add('hidden');
+
+            document.getElementById(screenId).classList.remove('hidden');
+        }
+
+        function renderMateri() {
+            const container = document.getElementById('materi-container');
+            container.innerHTML = "";
+
+            MATERI_DATA.forEach((item) => {
+                let housesHtml = "";
+                if (item.houses) {
+                    housesHtml = `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3">` +
+                        item.houses.map(h => `
+                            <div class="bg-amber-50 p-3 rounded-2xl border border-amber-200 text-center text-xs space-y-1">
+                                ${h.svg}
+                                <p class="font-bold text-amber-900">${h.name}</p>
+                                <span class="text-[10px] bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full font-semibold">${h.loc}</span>
+                                <p class="text-slate-600 text-[11px]">${h.feat}</p>
+                            </div>
+                        `).join('') + `</div>`;
+                }
+
+                let svgIllustration = item.svg ? `<div class="my-2 text-center">${item.svg}</div>` : "";
+
+                let pointsHtml = `<ul class="space-y-1.5 text-xs md:text-sm text-slate-700 list-disc list-inside">` +
+                    item.points.map(p => `<li>${p}</li>`).join('') + `</ul>`;
+
+                const card = document.createElement('div');
+                card.className = "bg-white p-6 rounded-3xl shadow-md border-2 border-slate-100 card-bounce flex flex-col justify-between space-y-3";
+                card.innerHTML = `
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-bold text-white px-3 py-1 rounded-full ${item.color}">${item.badge}</span>
+                            <i class="fa-solid ${item.icon} text-slate-400 text-lg"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-800">${item.title}</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">${item.desc}</p>
+                        ${svgIllustration}
+                        ${housesHtml}
+                        ${pointsHtml}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function startQuiz() {
+            showScreen('screen-quiz');
+            currentQuestionIndex = 0;
+            renderQuizQuestion();
+            renderQuestionMap();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderQuizQuestion() {
+            const q = QUIZ_DATA[currentQuestionIndex];
+            document.getElementById('quiz-current-num').innerText = currentQuestionIndex + 1;
+            document.getElementById('quiz-progress-text').innerText = `${currentQuestionIndex + 1} dari 50`;
+            document.getElementById('question-topic-badge').innerText = q.topic;
+            document.getElementById('question-text').innerText = `${currentQuestionIndex + 1}. ${q.q}`;
+
+            // Update Progress Bar
+            const percent = Math.round(((currentQuestionIndex + 1) / 50) * 100);
+            document.getElementById('quiz-progress-bar').style.width = `${percent}%`;
+            document.getElementById('quiz-percentage').innerText = `${percent}%`;
+
+            // Options container
+            const optsContainer = document.getElementById('quiz-options-container');
+            optsContainer.innerHTML = "";
+
+            const labels = ["A", "B", "C", "D"];
+            const currentAnswer = userAnswers[currentQuestionIndex];
+
+            q.opts.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "btn-pop w-full text-left p-4 rounded-2xl border-2 font-semibold text-sm transition flex items-center gap-3 ";
+                
+                if (currentAnswer === null) {
+                    btn.className += "bg-slate-50 border-slate-200 hover:border-blue-400 hover:bg-blue-50 text-slate-800";
+                } else {
+                    if (idx === q.ans) {
+                        btn.className += "bg-emerald-100 border-emerald-500 text-emerald-900 font-bold";
+                    } else if (idx === currentAnswer && currentAnswer !== q.ans) {
+                        btn.className += "bg-red-100 border-red-500 text-red-900 font-bold";
+                    } else {
+                        btn.className += "bg-slate-50 border-slate-200 opacity-60 text-slate-500";
+                    }
+                }
+
+                btn.onclick = () => selectAnswer(idx);
+                btn.innerHTML = `
+                    <span class="w-8 h-8 rounded-xl flex items-center justify-center font-bold text-xs shrink-0 ${currentAnswer === idx ? 'bg-slate-800 text-white' : 'bg-white border border-slate-300 text-slate-600'}">
+                        ${labels[idx]}
+                    </span>
+                    <span>${opt}</span>
+                `;
+                optsContainer.appendChild(btn);
+            });
+
+            // Feedback box
+            const feedbackBox = document.getElementById('instant-feedback-box');
+            if (currentAnswer !== null) {
+                feedbackBox.classList.remove('hidden');
+                if (currentAnswer === q.ans) {
+                    feedbackBox.className = "p-4 rounded-2xl border-2 bg-emerald-50 border-emerald-300 text-emerald-900 space-y-1";
+                    feedbackBox.innerHTML = `
+                        <p class="font-bold flex items-center gap-2 text-sm"><i class="fa-solid fa-circle-check text-emerald-600"></i> JAWABANMU BENAR! 🎉</p>
+                        <p class="text-xs text-emerald-800"><b>Pembahasan:</b> ${q.exp}</p>
+                    `;
+                } else {
+                    feedbackBox.className = "p-4 rounded-2xl border-2 bg-red-50 border-red-300 text-red-900 space-y-1";
+                    feedbackBox.innerHTML = `
+                        <p class="font-bold flex items-center gap-2 text-sm"><i class="fa-solid fa-circle-xmark text-red-600"></i> JAWABANMU SALAH! ❌</p>
+                        <p class="text-xs text-red-800">Jawaban yang benar adalah <b>${labels[q.ans]}. ${q.opts[q.ans]}</b>.</p>
+                        <p class="text-xs text-slate-700 mt-1"><b>Pembahasan:</b> ${q.exp}</p>
+                    `;
+                }
+            } else {
+                feedbackBox.classList.add('hidden');
+            }
+
+            // Prev/Next buttons state
+            document.getElementById('prev-btn').disabled = (currentQuestionIndex === 0);
+            document.getElementById('prev-btn').style.opacity = (currentQuestionIndex === 0) ? "0.5" : "1";
+
+            const nextBtn = document.getElementById('next-btn');
+            if (currentQuestionIndex === 49) {
+                nextBtn.innerHTML = `Selesai & Lihat Nilai <i class="fa-solid fa-check-double"></i>`;
+                nextBtn.className = "px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm flex items-center gap-2 shadow-md";
+            } else {
+                nextBtn.innerHTML = `Selanjutnya <i class="fa-solid fa-arrow-right"></i>`;
+                nextBtn.className = "px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-sm flex items-center gap-2 shadow-md";
+            }
+
+            renderQuestionMap();
+        }
+
+        function selectAnswer(optIndex) {
+            initAudio();
+            const q = QUIZ_DATA[currentQuestionIndex];
+            userAnswers[currentQuestionIndex] = optIndex;
+
+            if (optIndex === q.ans) {
+                playSound('correct');
+            } else {
+                playSound('wrong');
+            }
+
+            renderQuizQuestion();
+        }
+
+        function navQuestion(dir) {
+            playSound('click');
+            if (dir === 1 && currentQuestionIndex === 49) {
+                finishQuiz();
+                return;
+            }
+            currentQuestionIndex += dir;
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
+            if (currentQuestionIndex > 49) currentQuestionIndex = 49;
+            renderQuizQuestion();
+            window.scrollTo({ top: 100, behavior: 'smooth' });
+        }
+
+        function speakCurrentQuestion() {
+            const q = QUIZ_DATA[currentQuestionIndex];
+            const text = `Soal nomor ${currentQuestionIndex + 1}. ${q.q}. Pilihan: A. ${q.opts[0]}. B. ${q.opts[1]}. C. ${q.opts[2]}. D. ${q.opts[3]}`;
+            speakText(text);
+        }
+
+        function toggleQuestionMap() {
+            playSound('click');
+            const grid = document.getElementById('question-map-grid');
+            grid.classList.toggle('hidden');
+        }
+
+        function renderQuestionMap() {
+            const container = document.getElementById('question-buttons-container');
+            container.innerHTML = "";
+
+            for (let i = 0; i < 50; i++) {
+                const btn = document.createElement('button');
+                btn.className = "h-8 rounded-lg text-xs font-bold transition flex items-center justify-center ";
+                
+                if (i === currentQuestionIndex) {
+                    btn.className += "ring-2 ring-blue-600 ring-offset-1 ";
+                }
+
+                if (userAnswers[i] === null) {
+                    btn.className += "bg-slate-200 text-slate-700 hover:bg-slate-300";
+                } else if (userAnswers[i] === QUIZ_DATA[i].ans) {
+                    btn.className += "bg-emerald-500 text-white";
+                } else {
+                    btn.className += "bg-red-500 text-white";
+                }
+
+                btn.innerText = i + 1;
+                btn.onclick = () => {
+                    currentQuestionIndex = i;
+                    renderQuizQuestion();
+                };
+                container.appendChild(btn);
+            }
+        }
+
+        function finishQuiz() {
+            let correctCount = 0;
+            userAnswers.forEach((ans, idx) => {
+                if (ans === QUIZ_DATA[idx].ans) {
+                    correctCount++;
+                }
+            });
+
+            const wrongCount = 50 - correctCount;
+            const finalScore = Math.round((correctCount / 50) * 100);
+
+            document.getElementById('result-user-name').innerText = userName;
+            document.getElementById('result-score-number').innerText = finalScore;
+            document.getElementById('stat-correct').innerText = correctCount;
+            document.getElementById('stat-wrong').innerText = wrongCount;
+
+            const certWrapper = document.getElementById('certificate-btn-wrapper');
+            const statusText = document.getElementById('result-status-text');
+
+            if (finalScore === 100) {
+                playSound('fanfare');
+                statusText.innerText = "Sempurna! Nilai 100! Kamu Luar Biasa! 🎉";
+                certWrapper.classList.remove('hidden');
+            } else {
+                playSound('correct');
+                statusText.innerText = `Bagus! Kamu menjawab ${correctCount} dari 50 soal dengan benar.`;
+                certWrapper.classList.add('hidden');
+            }
+
+            showScreen('screen-result');
+            renderAnswerKeys();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function restartQuiz() {
+            playSound('click');
+            userAnswers = new Array(50).fill(null);
+            startQuiz();
+        }
+
+        function toggleAnswerKey() {
+            playSound('click');
+            const sec = document.getElementById('answer-key-section');
+            const btnText = document.getElementById('toggle-key-btn-text');
+            if (sec.classList.contains('hidden')) {
+                sec.classList.remove('hidden');
+                btnText.innerText = "Sembunyikan Pembahasan";
+            } else {
+                sec.classList.add('hidden');
+                btnText.innerText = "Lihat Pembahasan Lengkap";
+            }
+        }
+
+        function renderAnswerKeys() {
+            const container = document.getElementById('answer-key-container');
+            container.innerHTML = "";
+
+            const labels = ["A", "B", "C", "D"];
+
+            QUIZ_DATA.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = (userAns === q.ans);
+
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-2xl border-2 bg-white space-y-2 ${isCorrect ? 'border-emerald-300' : 'border-red-300'}`;
+                item.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-lg ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}">
+                            Soal #${idx + 1} - ${isCorrect ? 'BENAR' : 'SALAH'}
+                        </span>
+                        <span class="text-[11px] text-slate-500 font-bold">${q.topic}</span>
+                    </div>
+                    <p class="font-bold text-sm text-slate-800">${idx + 1}. ${q.q}</p>
+                    <div class="text-xs space-y-1">
+                        <p class="${isCorrect ? 'text-emerald-700 font-bold' : 'text-red-600 font-bold'}">
+                            Jawabanmu: ${userAns !== null ? labels[userAns] + '. ' + q.opts[userAns] : 'Belum Dijawab'}
+                        </p>
+                        ${!isCorrect ? `<p class="text-emerald-700 font-bold">Kunci Jawaban: ${labels[q.ans]}. ${q.opts[q.ans]}</p>` : ''}
+                        <p class="text-slate-600 italic bg-slate-50 p-2 rounded-xl mt-1">💡 <b>Pembahasan:</b> ${q.exp}</p>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function showCertificateModal() {
+            playSound('fanfare');
+            document.getElementById('cert-student-name').innerText = userName.toUpperCase();
+            
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('cert-date').innerText = today.toLocaleDateString('id-ID', options);
+
+            document.getElementById('modal-certificate').classList.remove('hidden');
+        }
+
+        function closeCertificateModal() {
+            playSound('click');
+            document.getElementById('modal-certificate').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
